@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1,
+                   maximum-scale=1,
+                   user-scalable=no">
+
+    <meta name="theme-color" content="#081018">
+
+    <title>Đầu Tư Cổ Tức</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <div>
+        <div class="brand">Đầu Tư Cổ Tức</div>
+        <div class="subtitle">
+            Quản lý danh mục • giao dịch • cổ tức
+        </div>
+    </div>
+</header>
+
+
+<main class="container">
+
+    <!-- ==============================
+         DASHBOARD
+    =============================== -->
+
+    <section id="dashboard" class="stats-grid">
+    </section>
+
+
+    <!-- ==============================
+         MENU
+    =============================== -->
+
+    <nav class="tabs">
+
+        <button class="tab active"
+                data-tab="overview">
+            Tổng quan
+        </button>
+
+        <button class="tab"
+                data-tab="trade">
+            Giao dịch
+        </button>
+
+        <button class="tab"
+                data-tab="dividend">
+            Cổ tức
+        </button>
+
+        <button class="tab"
+                data-tab="settings">
+            Cài đặt
+        </button>
+
+    </nav>
+
+
+    <!-- ==============================
+         TỔNG QUAN
+    =============================== -->
+
+    <section id="overview"
+             class="tab-panel active">
+
+        <div class="section-head">
+
+            <h2>Danh mục</h2>
+
+            <button class="primary"
+                    onclick="openTrade('buy')">
+                + Mua
+            </button>
+
+        </div>
+
+
+        <div id="portfolio"
+             class="cards">
+        </div>
+
+
+        <div class="section-head">
+
+            <h2>Lịch sử gần đây</h2>
+
+        </div>
+
+
+        <div id="recent"
+             class="table-wrap">
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         GIAO DỊCH
+    =============================== -->
+
+    <section id="trade"
+             class="tab-panel">
+
+        <div class="section-head">
+            <h2>Giao dịch</h2>
+        </div>
+
+
+        <div class="form-grid">
+
+
+            <!-- NẠP TIỀN -->
+
+            <div class="card">
+
+                <h3>Nạp tiền</h3>
+
+                <form id="depositForm">
+
+                    <label>
+                        Ngày
+
+                        <input
+                            type="date"
+                            name="date"
+                            required>
+                    </label>
+
+
+                    <label>
+                        Số tiền
+
+                        <input
+                            type="number"
+                            name="amount"
+                            min="0"
+                            step="1"
+                            required>
+                    </label>
+
+
+                    <label>
+                        Ghi chú
+
+                        <input
+                            type="text"
+                            name="note">
+                    </label>
+
+
+                    <button class="primary">
+                        Nạp tiền
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- MUA / BÁN -->
+
+            <div class="card">
+
+                <h3>Mua / Bán</h3>
+
+                <form id="tradeForm">
+
+                    <label>
+                        Loại
+
+                        <select name="type">
+
+                            <option value="buy">
+                                Mua
+                            </option>
+
+                            <option value="sell">
+                                Bán
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Ngày
+
+                        <input
+                            type="date"
+                            name="date"
+                            required>
+                    </label>
+
+
+                    <label>
+                        Mã cổ phiếu
+
+                        <input
+                            type="text"
+                            name="symbol"
+                            placeholder="ADP"
+                            required>
+                    </label>
+
+
+                    <label>
+                        Số lượng
+
+                        <input
+                            type="number"
+                            name="qty"
+                            min="1"
+                            step="1"
+                            required>
+                    </label>
+
+
+                    <label>
+                        Giá
+
+                        <input
+                            type="number"
+                            name="price"
+                            min="0"
+                            step="0.01"
+                            required>
+                    </label>
+
+
+                    <label>
+                        Nguồn tiền
+
+                        <select name="source">
+
+                            <option value="cash">
+                                Tiền mặt
+                            </option>
+
+                            <option value="dividend">
+                                Ví cổ tức
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Ghi chú
+
+                        <input
+                            type="text"
+                            name="note">
+                    </label>
+
+
+                    <div class="button-row">
+
+                        <button class="primary">
+                            Lưu giao dịch
+                        </button>
+
+                        <button
+                            type="button"
+                            class="ghost"
+                            onclick="resetTradeForm()">
+                            Xóa form
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <div class="section-head">
+            <h2>Lịch sử giao dịch</h2>
+        </div>
+
+
+        <div id="transactions"
+             class="table-wrap">
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         CỔ TỨC
+    =============================== -->
+
+    <section id="dividend"
+             class="tab-panel">
+
+        <div class="section-head">
+            <h2>Thêm cổ tức / quyền</h2>
+        </div>
+
+
+        <div class="form-grid">
+
+            <div class="card">
+
+                <form id="dividendForm">
+
+
+                    <label>
+                        Mã cổ phiếu
+
+                        <input
+                            type="text"
+                            name="symbol"
+                            placeholder="ADP"
+                            required>
+                    </label>
+
+
+                    <label>
+                        Loại
+
+                        <select name="type">
+
+                            <option value="cash">
+                                Cổ tức tiền mặt
+                            </option>
+
+                            <option value="stock">
+                                Cổ tức bằng cổ phiếu
+                            </option>
+
+                            <option value="bonus">
+                                Cổ phiếu thưởng
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+                    <label>
+                        Ngày GDHKQ / chốt quyền
+
+                        <input
+                            type="date"
+                            name="recordDate"
+                            required>
+                    </label>
+
+
+                    <label>
+                        Ngày nhận
+
+                        <input
+                            type="date"
+                            name="payDate"
+                            required>
+                    </label>
+
+
+                    <label>
+                        Cổ tức tiền / CP
+
+                        <input
+                            type="number"
+                            name="cashPerShare"
+                            min="0"
+                            step="0.01"
+                            value="0">
+
+                    </label>
+
+
+                    <label>
+                        Tỷ lệ nhận cổ phiếu
+
+                        <small>
+                            Ví dụ 10:1
+                        </small>
+                    </label>
+
+
+                    <div class="ratio">
+
+                        <input
+                            type="number"
+                            name="ratioBase"
+                            min="1"
+                            step="1"
+                            value="10">
+
+                        <span>:</span>
+
+                        <input
+                            type="number"
+                            name="ratioNew"
+                            min="0"
+                            step="1"
+                            value="1">
+
+                    </div>
+
+
+                    <label>
+                        Ghi chú
+
+                        <input
+                            type="text"
+                            name="note">
+                    </label>
+
+
+                    <button class="primary">
+                        Lưu quyền cổ tức
+                    </button>
+
+
+                </form>
+
+
+                <p class="hint">
+
+                    Hệ thống tự xác định số cổ phiếu
+                    đủ điều kiện dựa trên lịch sử
+                    mua/bán tại ngày chốt quyền.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="section-head">
+            <h2>Lịch sử cổ tức</h2>
+        </div>
+
+
+        <div id="dividends"
+             class="table-wrap">
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         CÀI ĐẶT
+    =============================== -->
+
+    <section id="settings"
+             class="tab-panel">
+
+        <div class="card">
+
+            <h2>Cài đặt</h2>
+
+
+            <form id="settingsForm">
+
+
+                <label>
+                    Phí giao dịch (%)
+
+                    <input
+                        type="number"
+                        name="fee"
+                        min="0"
+                        step="0.01">
+
+                </label>
+
+
+                <label>
+                    Phí lưu ký
+                    (đ/CP/ngày)
+
+                    <input
+                        type="number"
+                        name="custody"
+                        min="0"
+                        step="0.000001">
+
+                </label>
+
+
+                <label>
+                    Lãi tiền mặt
+                    (%/năm)
+
+                    <input
+                        type="number"
+                        name="interest"
+                        min="0"
+                        step="0.01">
+
+                </label>
+
+
+                <label class="switch-row">
+
+                    <input
+                        type="checkbox"
+                        name="custodyEnabled">
+
+                    Bật tính phí lưu ký
+
+                </label>
+
+
+                <button class="primary">
+                    Lưu cài đặt
+                </button>
+
+            </form>
+
+
+            <hr>
+
+
+            <h3>
+                Backup / Restore
+            </h3>
+
+
+            <div class="button-row">
+
+                <button
+                    class="primary"
+                    onclick="backupJSON()">
+
+                    Xuất JSON
+
+                </button>
+
+
+                <label class="file-btn">
+
+                    Nhập JSON
+
+                    <input
+                        id="restoreInput"
+                        type="file"
+                        accept=".json,application/json">
+
+                </label>
+
+
+                <button
+                    class="danger"
+                    onclick="resetAll()">
+
+                    Xóa toàn bộ dữ liệu
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ==============================
+     TOAST
+================================ -->
+
+<div id="toast"></div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
