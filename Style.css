@@ -1,0 +1,775 @@
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --bg: #071018;
+    --card: #101c25;
+    --card2: #14232e;
+    --border: #263b49;
+
+    --text: #f3f7fa;
+    --muted: #8fa3b0;
+
+    --green: #31d07c;
+    --red: #ff5d68;
+    --blue: #55a9ff;
+    --yellow: #f2c14e;
+}
+
+
+/* ==============================
+   RESET
+============================== */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+}
+
+
+/* ==============================
+   BUTTON / INPUT
+============================== */
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+input,
+select {
+    outline: none;
+}
+
+
+/* ==============================
+   TOP BAR
+============================== */
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px;
+
+    background: rgba(7, 16, 24, 0.94);
+
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.brand {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+}
+
+
+.subtitle {
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+/* ==============================
+   CONTAINER
+============================== */
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 14px;
+}
+
+
+/* ==============================
+   DASHBOARD
+============================== */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+}
+
+
+.stat {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 14px;
+
+    min-width: 0;
+}
+
+
+.stat .label {
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+.stat .value {
+    margin-top: 5px;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    word-break: break-word;
+}
+
+
+/* ==============================
+   TABS
+============================== */
+
+.tabs {
+    display: flex;
+
+    gap: 6px;
+
+    overflow-x: auto;
+
+    margin-bottom: 14px;
+
+    padding-bottom: 2px;
+
+    scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+
+.tab {
+    flex: 0 0 auto;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 9px 13px;
+
+    background: var(--card);
+
+    color: var(--text);
+}
+
+
+.tab.active {
+    background: var(--green);
+
+    color: #06110b;
+
+    border-color: var(--green);
+
+    font-weight: 800;
+}
+
+
+/* ==============================
+   TAB PANEL
+============================== */
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+
+/* ==============================
+   SECTION
+============================== */
+
+.section-head {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin: 16px 0 10px;
+}
+
+
+.section-head h2 {
+    margin: 0;
+
+    font-size: 18px;
+}
+
+
+/* ==============================
+   CARD
+============================== */
+
+.card {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 14px;
+}
+
+
+.card h2,
+.card h3 {
+    margin-top: 0;
+}
+
+
+/* ==============================
+   PORTFOLIO CARDS
+============================== */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+
+.stock-card h3 {
+    margin: 0 0 10px;
+
+    font-size: 18px;
+}
+
+
+.stock-meta {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+
+.kv {
+    background: var(--card2);
+
+    padding: 9px;
+
+    border-radius: 9px;
+}
+
+
+.kv span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+.kv b {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 13px;
+}
+
+
+/* ==============================
+   FORMS
+============================== */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+
+label {
+    display: block;
+
+    margin-bottom: 11px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+label small {
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+label input,
+label select {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 10px;
+
+    background: #0a151d;
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    appearance: none;
+}
+
+
+label input:focus,
+label select:focus {
+    border-color: var(--blue);
+}
+
+
+input::placeholder {
+    color: #627682;
+}
+
+
+/* ==============================
+   RATIO
+============================== */
+
+.ratio {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 11px;
+}
+
+
+.ratio input {
+    flex: 1;
+
+    margin: 0;
+}
+
+
+.ratio span {
+    color: var(--muted);
+
+    font-size: 18px;
+}
+
+
+/* ==============================
+   BUTTONS
+============================== */
+
+.button-row {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+
+.primary,
+.ghost,
+.danger,
+.file-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+
+    padding: 9px 13px;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border);
+
+    text-decoration: none;
+}
+
+
+.primary {
+    background: var(--green);
+
+    color: #06110b;
+
+    border-color: var(--green);
+
+    font-weight: 800;
+}
+
+
+.ghost {
+    background: transparent;
+
+    color: var(--text);
+}
+
+
+.danger {
+    background: transparent;
+
+    color: var(--red);
+
+    border-color: var(--red);
+}
+
+
+.file-btn {
+    position: relative;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    cursor: pointer;
+}
+
+
+.file-btn input {
+    display: none;
+}
+
+
+/* ==============================
+   TABLE
+============================== */
+
+.table-wrap {
+    overflow-x: auto;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+}
+
+
+table {
+    width: 100%;
+
+    min-width: 760px;
+
+    border-collapse: collapse;
+}
+
+
+th,
+td {
+    padding: 10px;
+
+    border-bottom: 1px solid var(--border);
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+
+th {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+td {
+    font-size: 13px;
+}
+
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+
+.action {
+    padding: 5px 8px;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    border: 1px solid var(--border);
+
+    color: var(--text);
+}
+
+
+.action:active {
+    transform: scale(0.96);
+}
+
+
+/* ==============================
+   COLORS
+============================== */
+
+.green {
+    color: var(--green);
+}
+
+.red {
+    color: var(--red);
+}
+
+.blue {
+    color: var(--blue);
+}
+
+.yellow {
+    color: var(--yellow);
+}
+
+
+/* ==============================
+   HINT
+============================== */
+
+.hint {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.55;
+}
+
+
+/* ==============================
+   SWITCH
+============================== */
+
+.switch-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--text);
+}
+
+
+.switch-row input {
+    width: auto;
+
+    margin: 0;
+}
+
+
+/* ==============================
+   HR
+============================== */
+
+hr {
+    margin: 20px 0;
+
+    border: 0;
+
+    border-top: 1px solid var(--border);
+}
+
+
+/* ==============================
+   TOAST
+============================== */
+
+#toast {
+    position: fixed;
+
+    left: 50%;
+    bottom: 22px;
+
+    z-index: 100;
+
+    max-width: 90%;
+
+    padding: 10px 14px;
+
+    transform:
+        translateX(-50%)
+        translateY(10px);
+
+    background: #162631;
+
+    color: #fff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease;
+}
+
+
+#toast.show {
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 760px) {
+
+    .container {
+        padding: 10px;
+    }
+
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .stat {
+        padding: 12px;
+    }
+
+
+    .stat .value {
+        font-size: 16px;
+    }
+
+
+    .stock-meta {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .topbar {
+        padding: 13px;
+    }
+
+
+    .brand {
+        font-size: 19px;
+    }
+
+}
+
+
+/* ==============================
+   VERY SMALL PHONE
+============================== */
+
+@media (max-width: 380px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .stock-meta {
+        grid-template-columns: 1fr;
+    }
+
+
+    .button-row {
+        flex-direction: column;
+    }
+
+
+    .button-row button,
+    .file-btn {
+        width: 100%;
+    }
+
+}
